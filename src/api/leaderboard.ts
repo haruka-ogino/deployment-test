@@ -1,7 +1,5 @@
 import express, { Request, Response } from 'express';
-import { getAllScores } from '../db/leaderboard-fns';
-
-// import { getAllScores } from './db/leaderboard-fns'
+import { addScores, getAllScores } from '../db/leaderboard-fns';
 
 const leaderboard = express.Router();
 
@@ -22,6 +20,16 @@ leaderboard.get('/', async (req: Request, res: Response) => {
   } catch (error) {
     console.error('Error fetching leaderboard:', error);
     res.status(500).json({ error: 'Error fetching leaderboard' });
+  }
+});
+
+leaderboard.post('/add', async (req, res) => {
+  try {
+    const input = req.body;
+    const scores = await addScores(input);
+    res.json(scores);
+  } catch (error) {
+    res.status(500).json({ message: 'Error adding scores' });
   }
 });
 
