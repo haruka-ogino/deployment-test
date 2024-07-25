@@ -7,7 +7,7 @@ const leaderboard = express.Router();
 
 leaderboard.get('/', async (req: Request, res: Response) => {
   try {
-    const result = getAllScores();
+    const result = await getAllScores();
     // const scores = result.sort((a, b) => Number(a.time) - Number(b.time));
 
     // const newScores = scores.map((score) => {
