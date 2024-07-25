@@ -1,12 +1,13 @@
 import express, { Request, Response } from 'express';
+import { getAllScores } from '../db/leaderboard-fns';
 
 // import { getAllScores } from './db/leaderboard-fns'
 
-const test = express.Router();
+const leaderboard = express.Router();
 
-test.get('/', async (req: Request, res: Response) => {
+leaderboard.get('/', async (req: Request, res: Response) => {
   try {
-    // const result = await getAllScores()
+    const result = getAllScores();
     // const scores = result.rows.sort((a, b) => Number(a.time) - Number(b.time))
 
     // const newScores = scores.map((score) => {
@@ -18,11 +19,11 @@ test.get('/', async (req: Request, res: Response) => {
     // })
 
     // res.json(newScores)
-    res.json('This is a test');
+    res.json(result);
   } catch (error) {
     console.error('Error fetching leaderboard:', error);
     res.status(500).json({ error: 'Error fetching leaderboard' });
   }
 });
 
-export default test;
+export default leaderboard;
