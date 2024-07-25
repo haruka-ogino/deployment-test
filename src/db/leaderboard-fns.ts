@@ -1,9 +1,10 @@
-// import { turso } from './connection.js'
+import { turso } from './connection';
 
-export function getAllScores() {
-  // const scores = await turso.execute('SELECT * FROM leaderboard')
-  const scores = [0, 1, 2, 3];
-  return scores;
+export async function getAllScores() {
+  const scores = await turso.execute('SELECT * FROM leaderboard');
+  console.log(scores.rows);
+
+  return scores.rows;
 }
 
 // export async function addScores(score: ScoreDraft) {
