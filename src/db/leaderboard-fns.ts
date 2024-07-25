@@ -2,7 +2,6 @@ import { turso } from './connection';
 
 export async function getAllScores() {
   const scores = await turso.execute('SELECT * FROM leaderboard');
-  console.log(scores.rows);
 
   return scores.rows;
 }
